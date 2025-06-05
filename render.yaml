@@ -2,8 +2,14 @@ services:
   - type: web
     name: pdf-extraction-api
     env: python
-    buildCommand: pip install -e .
-    startCommand: PYTHONPATH=/opt/render/project/src uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    buildCommand: |
+      pip install -r app/requirements.txt
+      pip install -e .
+    startCommand: |
+      export PYTHONPATH=/opt/render/project/src
+      uvicorn app.main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: PYTHONPATH
-        value: /opt/render/project/src 
+        value: /opt/render/project/src
+      - key: PYTHON_VERSION
+        value: 3.11.0 
