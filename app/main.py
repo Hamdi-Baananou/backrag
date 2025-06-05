@@ -3,8 +3,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from typing import List, Optional
 import uvicorn
 import os
-from .models.schemas import ExtractionResponse
-from .services.extractor import ExtractionService
+from app.models.schemas import ExtractionResponse
+from app.services.extractor import ExtractionService
 
 app = FastAPI(
     title="PDF Extraction API",
@@ -58,4 +58,4 @@ async def extract_information(
 
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 8000))
-    uvicorn.run("main:app", host="0.0.0.0", port=port, reload=True) 
+    uvicorn.run("app.main:app", host="0.0.0.0", port=port, reload=True) 
