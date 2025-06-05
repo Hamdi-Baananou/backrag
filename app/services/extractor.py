@@ -6,11 +6,11 @@ import tempfile
 from loguru import logger
 
 # Import core functionality from existing codebase
-from RAG_interface.llm_interface import initialize_llm, create_pdf_extraction_chain, create_web_extraction_chain
-from RAG_interface.pdf_processor import process_uploaded_pdfs
-from RAG_interface.vector_store import setup_vector_store, get_embedding_function
-from RAG_interface.extraction_prompts import prompts_to_run
-from RAG_interface.extraction_prompts_web import prompts_to_run as web_prompts
+from app.RAG_interface.llm_interface import initialize_llm, create_pdf_extraction_chain, create_web_extraction_chain
+from app.RAG_interface.pdf_processor import process_uploaded_pdfs
+from app.RAG_interface.vector_store import setup_vector_store, get_embedding_function
+from app.RAG_interface.extraction_prompts import prompts_to_run
+from app.RAG_interface.extraction_prompts_web import prompts_to_run as web_prompts
 
 class ExtractionService:
     def __init__(self):
