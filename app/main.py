@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from typing import List, Optional
 import uvicorn
 import os
-from models.schemas import ExtractionResponse
+from models.schemas import ExtractionResponse, ExtractionRequest
 from services.extractor import ExtractionService
 
 app = FastAPI(
@@ -33,7 +33,7 @@ async def root():
 @app.post("/extract", response_model=ExtractionResponse)
 async def extract_information(
     files: List[UploadFile] = File(...),
-    part_number: Optional[str] = None,
+    request: ExtractionRequest = None,
     extraction_service: ExtractionService = Depends(get_extraction_service)
 ):
     """
@@ -41,7 +41,7 @@ async def extract_information(
     
     Args:
         files: List of PDF files to process
-        part_number: Optional part number for web data lookup
+        request: Optional request body containing part number
         extraction_service: Extraction service instance
     
     Returns:
@@ -51,6 +51,7 @@ async def extract_information(
         if not files:
             raise HTTPException(status_code=400, detail="No files provided")
             
+        part_number = request.part_number if request else None
         results = await extraction_service.process_files(files, part_number)
         return results
     except Exception as e:
