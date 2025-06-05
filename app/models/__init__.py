@@ -1,3 +1,3 @@
 """
-Models package
+Models package for the PDF extraction API
 """ 
