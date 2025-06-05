@@ -1,10 +1,13 @@
 from fastapi import FastAPI, UploadFile, File, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from typing import List, Optional
-import uvicorn
+from loguru import logger
+import tempfile
 import os
-from models.schemas import ExtractionResponse, ExtractionRequest
+import uvicorn
+
 from services.extractor import ExtractionService
+from models.schemas import ExtractionRequest, ExtractionResponse
 
 app = FastAPI(
     title="PDF Extraction API",

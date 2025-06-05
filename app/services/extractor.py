@@ -1,16 +1,17 @@
-import os
-import time
-from typing import List, Dict, Any, Optional
+from typing import List, Dict, Optional
 from fastapi import UploadFile
-import tempfile
 from loguru import logger
+import json
+import time
+import os
+import tempfile
 
-# Import core functionality from existing codebase
-from app.RAG_interface.llm_interface import initialize_llm, create_pdf_extraction_chain, create_web_extraction_chain
-from app.RAG_interface.pdf_processor import process_uploaded_pdfs
-from app.RAG_interface.vector_store import setup_vector_store, get_embedding_function
-from app.RAG_interface.extraction_prompts import prompts_to_run
-from app.RAG_interface.extraction_prompts_web import prompts_to_run as web_prompts
+from ..RAG_interface.llm_interface import initialize_llm, create_pdf_extraction_chain, create_web_extraction_chain
+from ..RAG_interface.pdf_processor import process_uploaded_pdfs
+from ..RAG_interface.vector_store import setup_vector_store, get_embedding_function
+from ..RAG_interface.extraction_prompts import prompts_to_run
+from ..RAG_interface.extraction_prompts_web import prompts_to_run as web_prompts
+from ..models.schemas import ExtractionResult, ExtractionResponse
 
 class ExtractionService:
     def __init__(self):
