@@ -1,9 +1,10 @@
-from setuptools import setup, find_packages
+from setuptools import setup, find_namespace_packages
 
 setup(
     name="pdf-extraction-api",
     version="1.0.0",
-    packages=find_packages(),
+    package_dir={"": "app"},
+    packages=find_namespace_packages(include=["app", "app.*"]),
     install_requires=[
         "fastapi>=0.68.0",
         "uvicorn>=0.15.0",
