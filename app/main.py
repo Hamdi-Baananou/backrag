@@ -6,8 +6,8 @@ import tempfile
 import os
 import uvicorn
 
-from services.extractor import ExtractionService
-from models.schemas import ExtractionRequest, ExtractionResponse
+from app.services.extractor import ExtractionService
+from app.models.schemas import ExtractionRequest, ExtractionResponse
 
 app = FastAPI(
     title="PDF Extraction API",
